@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 
-function Home() {
+function Page() {
 
   const [movieData, setMovieData] = useState([]);
 
@@ -76,4 +76,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Page;

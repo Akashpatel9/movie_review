@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-function page() {
+function Page() {
 
   const {
     register,
@@ -48,4 +48,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
