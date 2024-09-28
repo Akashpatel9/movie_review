@@ -1,0 +1,21 @@
+# Ignore all JavaScript files
+*.js
+
+# Ignore all TypeScript files in the `out` folder (if you're using Next.js for static export)
+out/**/*.ts
+
+# Ignore the entire `node_modules` folder
+node_modules/
+
+# Ignore a specific file
+src/pages/api/someApiFile.ts
+
+# Ignore all files in a specific directory
+src/components/ignoreThisComponent/
+
+# Ignore all test files
+**/*.test.ts
+**/*.spec.ts
+
+# Ignore all files in the `.next` folder (Next.js build output)
+.next/
