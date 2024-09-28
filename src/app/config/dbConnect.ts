@@ -12,7 +12,7 @@ async function dbConnect() {
     return;
   }
   try {
-    const db = await mongoose.connect(process.env.DB_URL || "");
+    const db = await mongoose.connect("mongodb+srv://akashpatelsingh9893693091:NDlTj64F5e8ShkXp@cluster0.lprakem.mongodb.net/movieTestDB?retryWrites=true&w=majority&appName=Cluster0");
     connection.isConnected = db.connections[0].readyState;
     console.log("Database Sucessfully Connected");
   } catch (error) {
