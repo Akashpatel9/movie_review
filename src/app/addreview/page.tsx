@@ -30,7 +30,7 @@ function Page() {
   const onSubmit = async (data: any) => {
     if(err){
     const res = await axios.post(
-      `http://localhost:3000/api/addReview/${id}`,
+      `/api/addReview/${id}`,
       data
     );
     console.log(res);

@@ -16,7 +16,7 @@ function Page() {
 
   async function getData() {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/movies");
+      const { data } = await axios.get("/api/movies");
       setMovieData(data?.data);
       setSearchData(data?.data);
     } catch (error) {
