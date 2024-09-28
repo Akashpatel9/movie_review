@@ -14,7 +14,6 @@ function page() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   function getId(id: any) {

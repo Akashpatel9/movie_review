@@ -8,7 +8,6 @@ function page() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   const router = useRouter();
