@@ -1,10 +1,9 @@
 import dbConnect from "@/app/config/dbConnect";
 import movieModel from "@/app/models/movie";
 import mongoose from "mongoose";
+import { NextRequest } from "next/server";
 
-export async function GET(
-  { params }: { params: { id: string } },
-) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   await dbConnect();
 
   try {
