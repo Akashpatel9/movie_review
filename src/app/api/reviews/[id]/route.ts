@@ -3,9 +3,7 @@ import movieModel from "@/app/models/movie";
 import mongoose from "mongoose";
 
 export async function GET(
-  req: Request,
   { params }: { params: { id: string } },
-  res: Response
 ) {
   await dbConnect();
 

@@ -1,7 +1,7 @@
 import dbConnect from "@/app/config/dbConnect";
 import movieModel from "@/app/models/movie";
 
-export async function GET(req: Request, res: Response) {
+export async function GET() {
   await dbConnect();
 
   try {
