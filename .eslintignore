@@ -19,3 +19,10 @@ src/components/ignoreThisComponent/
 
 # Ignore all files in the `.next` folder (Next.js build output)
 .next/
+
+
+# Ignore specific files
+src/app/api/editReview/[id]/route.ts
+src/app/layout.tsx
+src/app/page.tsx
+src/components/Cards.tsx
