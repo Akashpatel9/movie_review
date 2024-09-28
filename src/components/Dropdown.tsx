@@ -8,7 +8,7 @@ function Dropdown({selectId}:any) {
 
   async function getData() {
     try {
-      const response = await axios.get("http://localhost:3000/api/movies");
+      const response = await axios.get("/api/movies");
       setData(response.data?.data);
     } catch (error) {
       console.error("Error fetching data:", error);
