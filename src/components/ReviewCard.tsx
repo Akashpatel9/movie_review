@@ -10,7 +10,7 @@ function ReviewCard({setReviews, reviewData}:any) {
   
   async function deleteData(){
     try {
-      await axios.delete(`http://localhost:3000/api/deleteReview/${reviewData._id}`)
+      await axios.delete(`/api/deleteReview/${reviewData._id}`)
       setReviews((pre:any) => pre?.filter((items:any)=>{
         return (items?._id != reviewData?._id);
       }))
