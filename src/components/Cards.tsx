@@ -12,7 +12,7 @@ function Cards({ setMovieData, movieData }: any) {
   async function deleteHandler() {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/deleteMovie/${movieData?._id}`
+        `/api/deleteMovie/${movieData?._id}`
       );
 
       setMovieData((pre:any) => pre?.filter((items:any)=>{
