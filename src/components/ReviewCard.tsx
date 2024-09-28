@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 
