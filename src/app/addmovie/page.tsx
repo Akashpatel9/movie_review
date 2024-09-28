@@ -13,7 +13,7 @@ function Page() {
   const router = useRouter();
 
   const onSubmit = async(data: any) =>{
-    const res = await axios.post("https://localhost:3000/api/addMovie",data);
+    const res = await axios.post("http://localhost:3000/api/addMovie",data);
     router.replace("/")
     console.log(res);
   }
