@@ -4,7 +4,7 @@ export interface Movies extends Document {
   name: string;
   releaseDate: Date;
   averageRating: number;
-  reviews: mongoose.Types.ObjectId[]; 
+  reviews: mongoose.Schema.Types.ObjectId[]; 
 }
 
 
@@ -22,7 +22,7 @@ const MoviesSchema: Schema<Movies> = new mongoose.Schema({
     default: 0,
   },
   reviews: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Reviews"
   }]
 });

@@ -9,7 +9,7 @@ export interface Reviews extends Document {
 
 const ReviewsSchema: Schema<Reviews> = new mongoose.Schema({
   movieId: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Movies",
     required: true
   },

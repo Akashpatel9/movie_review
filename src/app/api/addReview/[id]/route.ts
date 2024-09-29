@@ -3,7 +3,7 @@ import movieModel from "@/app/models/movie";
 import ReviewsModel from "@/app/models/review";
 import mongoose from "mongoose";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function POST(
   req: Request,
@@ -38,7 +38,7 @@ export async function POST(
       reviewComments,
     });
 
-    movieData.reviews.push(reviewData._id as mongoose.Types.ObjectId);
+    movieData.reviews.push(reviewData._id as mongoose.Schema.Types.ObjectId);
     await movieData.save();
 
     const allReviews = await ReviewsModel.find({ movieId: id });

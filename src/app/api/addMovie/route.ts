@@ -1,7 +1,7 @@
 import dbConnect from "@/app/config/dbConnect";
 import movieModel from "@/app/models/movie";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function POST(req: Request) {
   await dbConnect();

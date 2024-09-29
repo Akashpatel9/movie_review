@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body suppressHydrationWarning={true} className={`antialiased`}>
         <NevBar />
         {children}
       </body>
