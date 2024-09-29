@@ -57,14 +57,15 @@ function Page() {
         />
       </div>
 
+      <div className="mt-10 w-full border-[1px] border-zinc-300"></div>
 
-      <div className="h-full w-full grid grid-cols-3 mt-10 gap-10 justify-between">
+      <div className="h-full w-full grid grid-cols-3 mt-5 gap-10 justify-between ">
         {movieData?.length > 0 ? (
-          (searchData.length!=0?searchData:movieData)?.map((movie: any) => {
+          (searchData.length>0?searchData:movieData)?.map((movie: any) => {
             return (
               <div key={movie?._id}>
                 {" "}
-                <Cards setMovieData={setMovieData} movieData={movie} />
+                <Cards setSearchData={setSearchData} movieData={movie} />
               </div>
             );
           })
