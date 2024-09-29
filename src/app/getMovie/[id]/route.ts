@@ -7,16 +7,13 @@ export const revalidate = 0;
 
 export async function GET(
   req: Request,
+  { params }: { params: { id: string } }
 ) {
   await dbConnect();
 
-  try {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+  try {    
 
-    // Log the ID for debugging
-    console.log("Requested Movie ID:", req.url);
-    
+    const { id } = params;
 
     const movieData = await movieModel.findById(
       new mongoose.Types.ObjectId(id)

@@ -1,9 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 function NevBar() {
   const router = useRouter();
+  const pathname = usePathname();
+  const hideNavbarOnPaths = ["/addmovie", "/addreview"];
+  const shouldShowNavbar = hideNavbarOnPaths.includes(pathname);
+  if (shouldShowNavbar) return;
 
   return (
     <div className="flex justify-between items-center py-4 px-32 bg-[#e3e8ed]">

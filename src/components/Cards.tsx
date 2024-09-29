@@ -24,7 +24,7 @@ function Cards({ setSearchData, movieData }: any) {
 
   // ----------------------------------------------------------------------------------------
   async function editMovieHandler() {
-    router.replace(`/addmovie?id=${movieData?._id}`);
+    router.push(`/addmovie?id=${movieData?._id}`);
   }
 
   return (
