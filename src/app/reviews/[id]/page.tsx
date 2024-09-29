@@ -28,8 +28,8 @@ function ReviewPage() {
   return (
     <div className="w-full mt-8 px-32">
       <div className=" text-4xl flex justify-between items-center">
-        <h1 className="">{movieDetails && movieDetails?.name}</h1>
-        <h1 className="text-blue-600">{movieDetails && movieDetails?.averageRating}/10</h1>
+        <h1 className="font-semibold">{movieDetails && movieDetails?.name}</h1>
+        <h1 className="text-[#6558f5] font-semibold">{movieDetails && movieDetails?.averageRating}/10</h1>
       </div>
 
       <div className="mt-10 flex flex-col gap-8">

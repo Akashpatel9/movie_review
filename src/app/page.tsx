@@ -47,7 +47,7 @@ function Page() {
       </div>
 
 
-      <div className="mt-8 w-1/2 border-2 overflow-hidden rounded border-blue-400 flex items-center font-semibold text-2xl p-1">
+      <div className="mt-8 w-1/2 border-2 overflow-hidden rounded border-[#6558f5] flex items-center font-semibold text-2xl p-1">
         <CiSearch />
         <input
           className=" p-2 font-semibold w-full outline-none"

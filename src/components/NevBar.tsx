@@ -7,7 +7,7 @@ function NevBar() {
   const router = useRouter();
 
   return (
-    <div className="flex justify-between items-center py-4 px-32 bg-zinc-200">
+    <div className="flex justify-between items-center py-4 px-32 bg-[#e3e8ed]">
       <div
         onClick={() => router.replace("/")}
         className="uppercase font-bold cursor-pointer"
@@ -17,13 +17,13 @@ function NevBar() {
       <div className="flex gap-3">
         <button
           onClick={() => router.replace("/addmovie")}
-          className="py-1 px-2 border-2 border-blue-400 rounded bg-white text-blue-700 font-bold"
+          className="py-1 px-2 border-2 border-[#6558f5] rounded bg-white text-[#6558f5] font-bold"
         >
           Add new movie
         </button>
         <button
           onClick={() => router.replace("/addreview")}
-          className="py-1 px-2 border-2 border-blue-400 rounded bg-blue-700 text-white font-bold"
+          className="py-1 px-2 border-2 border-white rounded bg-[#6558f5] text-white font-bold"
         >
           Add new review
         </button>

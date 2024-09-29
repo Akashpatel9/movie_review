@@ -8,9 +8,9 @@ import { useRouter } from "next/navigation";
 function Page() {
 
   const [id, setId] = useState<any>("");
-
   const [err, setErr] = useState<boolean>(false);
-
+  const [submitting , setSubmitting] = useState<boolean>(false)
+  
   const {
     register,
     handleSubmit,
@@ -28,12 +28,14 @@ function Page() {
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
+    setSubmitting(true);
     if(err){
     const res = await axios.post(
       `/api/addReview/${id}`,
       data
     );
     console.log(res);
+    setSubmitting(false);
     router.replace("/")
   }
   };
@@ -73,8 +75,10 @@ function Page() {
             className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
           ></textarea>
           <div className=" w-full flex justify-end">
-            <button className="bg-blue-700 w-fit font-semibold px-4 text-white py-2 rounded">
-              Add review
+            <button disabled={submitting?true:false} className={`${submitting?"bg-[#463e9b]":"bg-[#6558f5]"} w-fit font-semibold px-4 text-white py-2 rounded`}>
+              {
+                submitting?"Adding":"Add review"
+              }
             </button>
           </div>
         </form>

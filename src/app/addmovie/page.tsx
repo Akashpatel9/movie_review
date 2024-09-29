@@ -1,9 +1,12 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 function Page() {
+
+  const [submitting , setSubmitting] = useState<boolean>(false)
 
   const {
     register,
@@ -13,9 +16,11 @@ function Page() {
   const router = useRouter();
 
   const onSubmit = async(data: any) =>{
+    setSubmitting(true);
     const res = await axios.post("/api/addMovie",data);
     router.replace("/")
     console.log(res);
+    setSubmitting(false);
   }
 
   return (
@@ -38,8 +43,8 @@ function Page() {
             required={true}
           />
           <div className=" w-full flex justify-end">
-            <button className="bg-blue-700 w-fit font-semibold px-4 text-white py-2 rounded">
-              Create movie
+            <button disabled={submitting?true:false} className={` ${submitting?"bg-[#463e9b]":"bg-[#6558f5]"}  w-fit font-semibold px-4 text-white py-2 rounded`}>
+              {!submitting?"Creating":"Create movie"}
             </button>
           </div>
         </form>

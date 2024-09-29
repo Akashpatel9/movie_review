@@ -32,11 +32,11 @@ function Cards({ setMovieData, movieData }: any) {
 
 
   return (
-    <div className="bg-blue-400 text-lg p-5 cursor-pointer border-2 border-zinc-400 rounded">
+    <div className="bg-[#e0defd] min-h-48 text-lg p-5 cursor-pointer border-2 border-zinc-400 rounded">
       <div onClick={()=>router.push(`/reviews/${movieData?._id}`)} className=" flex flex-col gap-2">
         <h4 className="font-semibold text-2xl">{movieData?.name}</h4>
         <h4 className="italic text-balance">{ new Date(movieData?.releaseDate).toDateString()}</h4>
-        <h4 className="font-bold">{movieData?.averageRating}/10</h4>
+        <h4 className="font-bold">Rating: {movieData?.averageRating}/10</h4>
       </div>
       <div className="flex items-center justify-end gap-5">
         <AiFillEdit onClick={()=>editMovieHandler()} className="cursor-pointer hover:text-green-600 hover:scale-150" />
