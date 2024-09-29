@@ -3,6 +3,9 @@ import movieModel from "@/app/models/movie";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
+
+export const dynamic = 'force-dynamic';
+
 export async function PUT(
   req: Request,
   { params }: { params: { id: string } }

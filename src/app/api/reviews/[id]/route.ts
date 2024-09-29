@@ -3,6 +3,8 @@ import movieModel from "@/app/models/movie";
 import mongoose from "mongoose";
 import { NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   await dbConnect();
 
