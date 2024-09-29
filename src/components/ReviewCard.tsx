@@ -5,16 +5,13 @@ import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 
 function ReviewCard({setReviews, reviewData}:any) {
-
-  console.log(reviewData);
   
   async function deleteData(){
     try {
-      await axios.delete(`/api/deleteReview/${reviewData._id}`)
       setReviews((pre:any) => pre?.filter((items:any)=>{
         return (items?._id != reviewData?._id);
       }))
-      
+      await axios.delete(`/api/deleteReview/${reviewData._id}`)
     } catch (error) {
       console.log(error);
     }

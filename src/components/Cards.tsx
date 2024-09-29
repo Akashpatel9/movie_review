@@ -10,13 +10,13 @@ function Cards({ setSearchData, movieData }: any) {
 
   async function deleteHandler() {
     try {
-      const res = await axios.delete(`/api/deleteMovie/${movieData?._id}`);
-
       setSearchData((pre: any) =>
         pre?.filter((items: any) => {
           return items?._id != movieData?._id;
         })
       );
+      const res = await axios.delete(`/api/deleteMovie/${movieData?._id}`);
+
     } catch (error) {
       console.log(error);
     }

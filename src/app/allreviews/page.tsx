@@ -4,19 +4,20 @@ import { CiSearch } from "react-icons/ci";
 import Cards from "@/components/Cards";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import ReviewCard from "@/components/ReviewCard";
 
 
 function Page() {
 
-  const [movieData, setMovieData] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
 
   const[ searchData , setSearchData] = useState([]);
 
   async function getData() {
     try {
-      const { data } = await axios.get("/api/movies");
-      setMovieData(data?.data);
-      setSearchData(data?.data);
+      const { data } = await axios.get("/api/getAllReviews");
+      setReviewData(data?.data);
+      setSearchData(data?.data);      
     } catch (error) {
       console.log(error);
     }
@@ -29,8 +30,10 @@ function Page() {
 
 
   function serchDataFilter(e:any){
-    setSearchData(movieData?.filter((item: any) => {
-      return item?.name.toLowerCase().startsWith(e.target.value.toLowerCase());
+    setSearchData(reviewData?.filter((item: any) => {
+        console.log(item.reviewComments);
+        
+      return item.reviewComments.toLowerCase().startsWith(e.target.value.toLowerCase());
     }));
   }
 
@@ -39,7 +42,7 @@ function Page() {
   return (
     <div className="px-32 mt-8">
       <div className="text-4xl font-semibold text-zinc-700">
-        The best movie reviews site!
+        Reviews
       </div>
 
 
@@ -47,7 +50,7 @@ function Page() {
         <CiSearch />
         <input
           className=" p-2 font-semibold w-full outline-none"
-          placeholder="Search for your favourit movie"
+          placeholder="Search for your favourit reviews"
           type="text"
           onChange={serchDataFilter}
         />
@@ -57,11 +60,11 @@ function Page() {
 
       <div className="h-full w-full grid grid-cols-3 mt-5 gap-10 justify-between ">
         {searchData?.length > 0 ? (
-          (searchData)?.map((movie: any) => {
+          searchData?.map((review: any) => {
             return (
-              <div key={movie?._id}>
+              <div key={review?._id}>
                 {" "}
-                <Cards setSearchData={setSearchData} movieData={movie} />
+                <ReviewCard setSearchData={setSearchData} reviewData={review} />
               </div>
             );
           })

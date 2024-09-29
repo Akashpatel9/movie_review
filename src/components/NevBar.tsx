@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 function NevBar() {
-  
   const router = useRouter();
 
   return (
@@ -15,6 +14,12 @@ function NevBar() {
         moviecritic
       </div>
       <div className="flex gap-3">
+        <button
+          onClick={() => router.push("/allreviews")}
+          className="py-1 px-2 border-2 border-[#6558f5] rounded bg-white text-[#6558f5] font-bold"
+        >
+          Get All Reviews
+        </button>
         <button
           onClick={() => router.push("/addmovie")}
           className="py-1 px-2 border-2 border-[#6558f5] rounded bg-white text-[#6558f5] font-bold"
