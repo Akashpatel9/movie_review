@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useForm } from "react-hook-form";
 
 function Page() {
@@ -80,78 +80,83 @@ function Page() {
   };
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
-      <div className="flex flex-col gap-5 w-1/4 border-2 border-zinc-300 p-10 rounded">
-        <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-2xl font-semibold">
-            {isEdit ? "Edit Review" : "Add New Review"}
-          </h1>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="w-screen h-screen flex items-center justify-center">
+        <div className="flex flex-col gap-5 w-1/4 border-2 border-zinc-300 p-10 rounded">
+          <form
+            className="flex flex-col gap-5"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <h1 className="text-2xl font-semibold">
+              {isEdit ? "Edit Review" : "Add New Review"}
+            </h1>
 
-          {!isEdit && (
-            <div>
-              <select
-                className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
-                value={selectedMovie}
-                onChange={(e) => {
-                  setSelectedMovie(e.target.value);
-                  setMovieError(false);
-                }}
+            {!isEdit && (
+              <div>
+                <select
+                  className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
+                  value={selectedMovie}
+                  onChange={(e) => {
+                    setSelectedMovie(e.target.value);
+                    setMovieError(false);
+                  }}
+                >
+                  <option value="">Select a Movie</option>
+                  {movies.map((movie) => (
+                    <option key={movie._id} value={movie._id}>
+                      {movie.name}
+                    </option>
+                  ))}
+                </select>
+                {movieError && (
+                  <p className="text-red-500 text-sm">Please select a movie.</p>
+                )}
+              </div>
+            )}
+
+            <input
+              className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
+              type="text"
+              placeholder="Your name"
+              {...register("reviewerName")}
+              required={true}
+            />
+
+            <input
+              className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
+              type="number"
+              placeholder="Rating out of 10"
+              max="10"
+              min="0"
+              {...register("rating")}
+              required={true}
+            />
+
+            <textarea
+              {...register("reviewComments")}
+              required={true}
+              className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
+              placeholder="Your review"
+            ></textarea>
+
+            <div className="w-full flex justify-end">
+              <button
+                disabled={submitting}
+                className={`${
+                  submitting ? "bg-[#463e9b]" : "bg-[#6558f5]"
+                } w-fit font-semibold px-4 text-white py-2 rounded`}
               >
-                <option value="">Select a Movie</option>
-                {movies.map((movie) => (
-                  <option key={movie._id} value={movie._id}>
-                    {movie.name}
-                  </option>
-                ))}
-              </select>
-              {movieError && (
-                <p className="text-red-500 text-sm">Please select a movie.</p>
-              )}
+                {!submitting
+                  ? isEdit
+                    ? "Update Review"
+                    : "Add Review"
+                  : "Please wait..."}
+              </button>
             </div>
-          )}
-
-          <input
-            className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
-            type="text"
-            placeholder="Your name"
-            {...register("reviewerName")}
-            required={true}
-          />
-
-          <input
-            className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
-            type="number"
-            placeholder="Rating out of 10"
-            max="10"
-            min="0"
-            {...register("rating")}
-            required={true}
-          />
-
-          <textarea
-            {...register("reviewComments")}
-            required={true}
-            className="border-2 bottom-zinc-400 rounded p-2 outline-none w-full"
-            placeholder="Your review"
-          ></textarea>
-
-          <div className="w-full flex justify-end">
-            <button
-              disabled={submitting}
-              className={`${
-                submitting ? "bg-[#463e9b]" : "bg-[#6558f5]"
-              } w-fit font-semibold px-4 text-white py-2 rounded`}
-            >
-              {!submitting
-                ? isEdit
-                  ? "Update Review"
-                  : "Add Review"
-                : "Please wait..."}
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
 
