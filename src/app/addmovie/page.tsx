@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useForm } from "react-hook-form";
 
 function Page() {
@@ -47,6 +47,7 @@ function Page() {
   };
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="flex flex-col gap-5 w-1/4 border-2 border-zinc-300 p-10 rounded">
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
@@ -84,6 +85,7 @@ function Page() {
         </form>
       </div>
     </div>
+    </Suspense>
   );
 }
 
