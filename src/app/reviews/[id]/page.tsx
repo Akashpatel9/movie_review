@@ -13,8 +13,8 @@ function ReviewPage() {
   async function getReviews() {
     try {
       const { data } = await axios.get(`/api/reviews/${id}`);
-      setReviews(data?.data?.reviews);
-      setMovieDetails(data?.data);
+      setReviews(data?.data[0]?.reviews);
+      setMovieDetails(data?.data[0]);
     } catch (error) {
       console.log(error);
     }

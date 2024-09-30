@@ -20,7 +20,11 @@ function Page() {
     if (movieId) {
       setIsEdit(true);
       const fetchMovieDetails = async () => {
+        console.log("coming");
+        
         const res = await axios.get(`/api/getMovie/${movieId}`);
+        console.log(res);
+        
         setMovieDetails(res.data);
         setValue("name", res.data.data.name);
         setValue("releaseDate", res.data.data.releaseDate.split("T")[0]);

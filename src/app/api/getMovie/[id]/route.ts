@@ -15,6 +15,9 @@ export async function GET(
 
     const { id } = params;
 
+    console.log(id);
+    
+
     const movieData = await movieModel.findById(
       new mongoose.Types.ObjectId(id)
     );
@@ -38,6 +41,8 @@ export async function GET(
       { status: 200 }
     );
   } catch (error) {
+    console.log(error);
+    
     return NextResponse.json(
       {
         success: false,

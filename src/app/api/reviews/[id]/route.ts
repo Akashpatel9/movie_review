@@ -4,11 +4,12 @@ import ReviewsModel from "@/app/models/review";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
-
 export const revalidate = 0;
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await dbConnect();
 
   try {
@@ -24,9 +25,21 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       );
     }
 
-    const movieData = await movieModel
-      .findOne({ _id: new mongoose.Types.ObjectId(id) })
-      .populate("reviews"); 
+    
+    const movieData = await movieModel.aggregate([
+      {
+        $match: { _id: new mongoose.Types.ObjectId(id) } // Find the movie by ID
+      },
+      {
+        $lookup: {
+          from: "reviews",
+          localField: "_id",
+          foreignField: "movieId",
+          as: "reviews",
+        }
+      }
+    ]);
+
 
     if (!movieData) {
       return NextResponse.json(
@@ -37,18 +50,15 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         { status: 404 }
       );
     }
-
-
     return NextResponse.json(
       {
-        data: movieData,
+        data:movieData,
         success: true,
         message: "Successfully retrieved movie data",
       },
       { status: 200 }
     );
   } catch (error) {
-
     console.error("Error fetching movie data:", error);
 
     return NextResponse.json(

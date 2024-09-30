@@ -17,7 +17,7 @@ export async function GET(
 
     const reviewData = await ReviewsModel.findById(
       new mongoose.Types.ObjectId(id)
-    );
+    ).populate("movieId");
 
     if (!reviewData) {
       return NextResponse.json(
